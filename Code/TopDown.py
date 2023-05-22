@@ -371,7 +371,7 @@ def leftRecursion(grammar):
 
 def Run():
     
-    print("Enter the productions of your grammar, when you finish enter *")
+    print("Enter the productions of your grammar, productions like N-> x | y, when you finish enter *")
     print(" ")
     p1 = input()
     P = []

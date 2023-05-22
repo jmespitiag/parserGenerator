@@ -482,8 +482,34 @@ def syntaxAnalisis(table,w,P):
     
 def Run():
    
-    R = [("S","VS"),("S",epsilon),("V","Di"),("D","Y"),("D",epsilon),("Y","UG"),("G","lUG"),("G",epsilon),("U","t"),("U","b"),("U","(Y)")]
-    P = [('S','A'),('A','aA'),('A','a')]
+    print("Enter the productions of your grammar, productions like N-> x | y, when you finish enter *")
+    print(" ")
+    p1 = input()
+    P = []
+    while p1 != '*':
+        Nonterminal = p1[0]
+        while "|" in p1:
+            index = p1.index("|")
+            curr = p1[0:index-1]
+            p1 = p1[index+2:]
+            try:
+                index1 = curr.index(">")+1
+                tup = (curr[0],curr[index1:])
+                Nonterminal =  curr[0]
+            except:
+                tup = (curr[0],curr)
+            P.append(tup)
+        try:
+            index = p1.index(">")+1
+            tup = (p1[0],p1[index:])  
+            P.append(tup)
+            print("Another one...")
+            p1 = input()
+        except:
+            tup = (Nonterminal,p1)  
+            P.append(tup)
+            print("Another one...")
+            p1 = input()
 
     print("Here's your grammar")
     grammar = makeHash(P)
